@@ -17,7 +17,7 @@ const Header = ({ itemsCart }: HeaderProps) => {
 	return (
 		<Wrapper>
 			<Title>WeMovies</Title>
-			<CartWrapper>
+			<CartWrapper to="/cart">
 				<CartTextBlock>
 					<CartTitle>Meu Carrinho</CartTitle>
 					<CartItemsCounter>{itemsCart} itens</CartItemsCounter>

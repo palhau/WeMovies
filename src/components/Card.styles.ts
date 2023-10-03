@@ -7,7 +7,9 @@ export const Wrapper = styled.section`
 	width: 309.33px;
 	height: 305px;
 	padding: 10px;
+	margin: 10px;
 	background-color: white;
+	border-radius: 4px;
 `;
 
 export const MovieInfoBlock = styled.div`
@@ -16,7 +18,7 @@ export const MovieInfoBlock = styled.div`
 	align-items: center;
 	width: 287.33px;
 	height: 237px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 `;
 
 export const MovieName = styled.span`
@@ -25,6 +27,7 @@ export const MovieName = styled.span`
 	line-height: 16.34px;
 	text-align: center;
 	color: black;
+	margin-top: 5px;
 `;
 
 export const MovieValue = styled.span`
