@@ -26,7 +26,7 @@ export const MovieName = styled.span`
 	font-weight: 700;
 	line-height: 16.34px;
 	text-align: center;
-	color: black;
+	color: #2f2e41;
 	margin-top: 5px;
 `;
 
@@ -35,7 +35,7 @@ export const MovieValue = styled.span`
 	font-weight: 700;
 	line-height: 21.79px;
 	text-align: center;
-	color: black;
+	color: #2f2e41;
 `;
 
 export const MovieImage = styled.img`

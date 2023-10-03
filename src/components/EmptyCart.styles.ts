@@ -18,7 +18,7 @@ export const EmptyCartText = styled.p`
 	font-weight: 700;
 	line-height: 27.24px;
 	text-align: center;
-	color: black;
+	color: #2f2e41;
 	margin-bottom: 30px;
 `;
 
