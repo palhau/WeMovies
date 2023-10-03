@@ -11,6 +11,10 @@ export const EmptyCartContainer = styled.section`
 	padding: 10px;
 	background-color: white;
 	border-radius: 4px;
+	@media (max-width: 390px) {
+		width: 370px;
+		padding: 20px;
+	}
 `;
 
 export const EmptyCartText = styled.p`
@@ -20,6 +24,9 @@ export const EmptyCartText = styled.p`
 	text-align: center;
 	color: #2f2e41;
 	margin-bottom: 30px;
+	@media (max-width: 390px) {
+		width: 200px;
+	}
 `;
 
 export const EmptyCartImageWrapper = styled.div`
@@ -28,6 +35,9 @@ export const EmptyCartImageWrapper = styled.div`
 	width: 447px;
 	height: 265.8px;
 	border-bottom: 1.36px solid #3f3d56;
+	@media (max-width: 390px) {
+		width: 350px;
+	}
 `;
 
 export const EmptyCartBackBtn = styled(Link)`

@@ -26,7 +26,7 @@ const ItemCart = () => {
 				<ItemCartQtdInput type="number" />
 				<PlusIcon />
 			</ItemCartQtdBlock>
-			<ItemCartTextPrice>R$ 29,99</ItemCartTextPrice>
+			<ItemCartTextPrice type="subtotal">R$ 29,99</ItemCartTextPrice>
 			<ItemCartTrashIconWrapper>
 				<TrashIcon />
 			</ItemCartTrashIconWrapper>

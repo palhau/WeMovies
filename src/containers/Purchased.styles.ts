@@ -11,6 +11,10 @@ export const PurchasedContainer = styled.section`
 	padding: 10px;
 	background-color: white;
 	border-radius: 4px;
+	@media (max-width: 390px) {
+		width: 370px;
+		padding: 20px;
+	}
 `;
 
 export const PurchasedText = styled.p`
@@ -20,6 +24,9 @@ export const PurchasedText = styled.p`
 	text-align: center;
 	color: #2f2e41;
 	margin-bottom: 30px;
+	@media (max-width: 390px) {
+		width: 200px;
+	}
 `;
 
 export const PurchasedImageWrapper = styled.div`
