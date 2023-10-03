@@ -1,12 +1,16 @@
-import EmptyCart from 'components/EmptyCart';
-import Header from 'components/Header';
 import React from 'react';
+
+import Header from 'components/Header';
+import ItemCart from 'components/ItemCart';
+import { CartContainer } from 'containers/Cart.styles';
 
 const Cart = () => {
 	return (
 		<>
 			<Header />
-			<EmptyCart />
+			<CartContainer>
+				<ItemCart />
+			</CartContainer>
 		</>
 	);
 };

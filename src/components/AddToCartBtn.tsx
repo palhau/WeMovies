@@ -1,6 +1,6 @@
 import React from 'react';
 import { BtnText, BtnWrapper, QtdItems } from 'components/AddToCartBtn.styles';
-import AddCartIcon from '../assets/addCartIcon';
+import AddCartIcon from '../assets/icons/AddCartIcon';
 
 export interface AddToCartBtnProps {
 	wasAdded: boolean;

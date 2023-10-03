@@ -6,7 +6,7 @@ import {
 	EmptyCartImageWrapper,
 	EmptyCartText,
 } from 'components/EmptyCart.styles';
-import EmpetyCartImage from 'assets/emptyCartImage';
+import EmpetyCartImage from 'assets/icons/EmptyCartImage';
 
 const EmptyCart = () => {
 	return (
