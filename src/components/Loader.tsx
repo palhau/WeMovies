@@ -1,4 +1,4 @@
-import { Spinner, Wrapper } from 'components/Loader/Loader.styles';
+import { Spinner, Wrapper } from 'components/Loader.styles';
 import React from 'react';
 
 const Loader = () => {
