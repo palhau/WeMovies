@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface priceText {
+	type?: string;
+}
 
 export const ItemCartContainer = styled.div`
 	display: grid;
@@ -6,6 +10,14 @@ export const ItemCartContainer = styled.div`
 	align-items: center;
 	width: 902px;
 	height: 114px;
+	margin-bottom: 10px;
+	@media (max-width: 390px) {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 390px;
+		margin-bottom: 10px;
+	}
 `;
 
 export const ItemCartImage = styled.img`
@@ -19,6 +31,12 @@ export const ItemCartTextBlock = styled.div`
 	flex-wrap: wrap;
 	width: 253px;
 	height: 48px;
+	@media (max-width: 390px) {
+		display: flex;
+		flex-direction: row;
+		align-self: flex-start;
+		flex-wrap: nowrap;
+	}
 `;
 
 export const ItemCartTextTitle = styled.span`
@@ -27,13 +45,38 @@ export const ItemCartTextTitle = styled.span`
 	line-height: 19.07px;
 	color: #2f2e41;
 	margin-bottom: 5px;
+	@media (max-width: 390px) {
+		margin-left: 10px;
+	}
 `;
 
-export const ItemCartTextPrice = styled.span`
+export const ItemCartTextPrice = styled.span<priceText>`
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 21.79px;
 	color: #2f2e41;
+	@media (max-width: 390px) {
+		margin-left: 20px;
+		${(props) =>
+			props.type === 'subtotal' &&
+			css`
+				display: flex;
+				flex-direction: column;
+				width: 98px;
+				height: 30px;
+				position: relative;
+				top: -60px;
+				left: 120px;
+				&:before {
+					content: 'SUBTOTAL';
+					color: #999999;
+					font-size: 12px;
+					font-weight: 700;
+					line-height: 16.34px;
+					margin-right: 10px;
+				}
+			`}
+	}
 `;
 
 export const ItemCartQtdBlock = styled.div`
@@ -43,6 +86,11 @@ export const ItemCartQtdBlock = styled.div`
 	justify-content: space-between;
 	width: 120px;
 	height: 26px;
+	@media (max-width: 390px) {
+		position: relative;
+		top: -60px;
+		left: 100px;
+	}
 `;
 
 export const ItemCartQtdInput = styled.input`
@@ -56,4 +104,9 @@ export const ItemCartTrashIconWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
+	@media (max-width: 390px) {
+		position: relative;
+		top: -120px;
+		left: 70px;
+	}
 `;

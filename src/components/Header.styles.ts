@@ -7,6 +7,10 @@ export const Wrapper = styled.section`
 	justify-content: space-between;
 	width: 960px;
 	height: 74px;
+	@media (max-width: 390px) {
+		width: 390px;
+		padding: 0 20px 0 20px;
+	}
 `;
 
 export const Title = styled(Link)`
