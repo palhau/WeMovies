@@ -26,7 +26,7 @@ const Cart = () => {
 				</CartHeaderWrapper>
 				<ItemCart />
 				<CartFooterWrapper>
-					<CartBtn to="/cart">
+					<CartBtn to="/purchased">
 						<CartBtnText>FINALIZAR PEDIDO</CartBtnText>
 					</CartBtn>
 					<CartFooterTextBlock>

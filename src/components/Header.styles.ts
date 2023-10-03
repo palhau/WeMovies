@@ -9,10 +9,11 @@ export const Wrapper = styled.section`
 	height: 74px;
 `;
 
-export const Title = styled.h1`
+export const Title = styled(Link)`
 	font-size: 20px;
 	font-weight: 700;
 	line-height: 27.24px;
+	color: #ffffff;
 `;
 
 export const CartWrapper = styled(Link)`
