@@ -9,9 +9,8 @@ export const BtnWrapper = styled.button<AddToCartBtnProps>`
 	width: 287.33px;
 	height: 40px;
 	padding: 10px 20px;
-	background-color: #009edd;
 	background-color: ${(props) => (!props.wasAdded ? '#009edd' : '#039b00')};
-	border-radius: 5px;
+	border-radius: 4px;
 	border: none;
 `;
 

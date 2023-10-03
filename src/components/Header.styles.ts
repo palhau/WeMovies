@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.section`
 	display: flex;
@@ -14,7 +15,7 @@ export const Title = styled.h1`
 	line-height: 27.24px;
 `;
 
-export const CartWrapper = styled.div`
+export const CartWrapper = styled(Link)`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -35,6 +36,7 @@ export const CartTitle = styled.span`
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 19.07px;
+	color: white;
 `;
 
 export const CartItemsCounter = styled.span`

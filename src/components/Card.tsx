@@ -10,18 +10,18 @@ import AddToCartBtn from 'components/AddToCartBtn';
 
 interface CardProps {
 	wasAdded: boolean;
-	imgSrc?: number;
+	imgSrc?: string;
 	movieName?: string;
-	movieValue?: number;
+	movieValue?: string;
 }
 
 const Card = ({ imgSrc, movieName, movieValue, wasAdded }: CardProps) => {
 	return (
 		<Wrapper>
 			<MovieInfoBlock>
-				<MovieImage />
+				<MovieImage src={imgSrc} />
 				<MovieName>{movieName}</MovieName>
-				<MovieValue>R$ {movieValue}</MovieValue>
+				<MovieValue>{movieValue}</MovieValue>
 			</MovieInfoBlock>
 			<AddToCartBtn wasAdded={wasAdded} />
 		</Wrapper>
