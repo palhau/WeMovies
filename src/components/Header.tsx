@@ -7,7 +7,7 @@ import {
 	Title,
 	Wrapper,
 } from './Header.styles';
-import CartIcon from 'assets/cartIcon';
+import CartIcon from 'assets/icons/CartIcon';
 
 interface HeaderProps {
 	itemsCart?: number;
