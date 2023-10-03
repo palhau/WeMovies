@@ -101,7 +101,7 @@ export const ItemCartQtdInput = styled.input`
 	text-align: center;
 `;
 
-export const ItemCartTrashIconWrapper = styled.div`
+export const ItemCartTrashIconWrapper = styled.a`
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
@@ -110,4 +110,16 @@ export const ItemCartTrashIconWrapper = styled.div`
 		top: -120px;
 		left: 70px;
 	}
+`;
+
+export const ItemCartMinusIconWrapper = styled.a`
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+`;
+
+export const ItemCartPlusIconWrapper = styled.a`
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
 `;

@@ -18,6 +18,7 @@ interface CartState {
 type Action =
 	| { type: 'ADD_MOVIE'; movie: CartState['movies'][0] }
 	| { type: 'REMOVE_MOVIE'; movieId: number }
+	| { type: 'REMOVE_ALL_MOVIE'; movieId: number }
 	| { type: 'RESET_STATE' };
 
 const CartStateContext = createContext<
@@ -32,14 +33,25 @@ const cartStateReducer = (state: CartState, action: Action): CartState => {
 	switch (action.type) {
 		case 'ADD_MOVIE':
 			return { ...state, movies: [...state.movies, action.movie] };
-		case 'REMOVE_MOVIE':
+		case 'REMOVE_MOVIE': {
+			const itemIndex = state.movies.findIndex(
+				(item) => item.id === action.movieId
+			);
+			if (itemIndex !== -1) {
+				const newItems = [...state.movies];
+				newItems.splice(itemIndex, 1);
+				return { ...state, movies: newItems };
+			}
+			return state;
+		}
+		case 'REMOVE_ALL_MOVIE':
 			return {
 				...state,
-				movies: state.movies.filter((movie) => movie.id !== action.movieId),
+				movies: state.movies.filter((item) => item.id !== action.movieId),
 			};
 		case 'RESET_STATE':
 			return {
-				movies: [], // Reset the items array to an empty array
+				movies: [],
 			};
 		default:
 			return state;

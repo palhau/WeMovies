@@ -19,24 +19,27 @@ import { type Movie } from 'utils/types';
 // import { Movie } from 'utils/types';
 
 const Cart = () => {
-	const hasItems = true;
 	const {
 		state: { movies },
 		dispatch,
 	} = useCartState();
 	const [filteredMovies, setFilteredMovies] = useState<Movie[]>();
 
-	const addItem = (movie: Movie) => {
+	const addMovie = (movie: Movie) => {
 		dispatch({ type: 'ADD_MOVIE', movie });
 	};
 
-	const removeItem = (movieId: number) => {
+	const removeMovie = (movieId: number) => {
 		dispatch({ type: 'REMOVE_MOVIE', movieId });
 	};
 
-	// const finishPurchase = (itemId: number) => {
-	// 	dispatch({ type: 'RESET_STATE' });
-	// };
+	const removeSpecificTitle = (movieId: number) => {
+		dispatch({ type: 'REMOVE_ALL_MOVIE', movieId });
+	};
+
+	const finishPurchase = () => {
+		dispatch({ type: 'RESET_STATE' });
+	};
 
 	useEffect(() => {
 		const filterArray = movies.filter(
@@ -49,7 +52,7 @@ const Cart = () => {
 	return (
 		<>
 			<Header />
-			{hasItems ? (
+			{movies.length > 0 ? (
 				<CartContainer>
 					<CartHeaderWrapper>
 						<CartText>PRODUTO</CartText>
@@ -60,19 +63,18 @@ const Cart = () => {
 						return (
 							<ItemCart
 								key={movie.id}
-								title={movie.title}
-								price={movie.price}
-								imgSrc={movie.image}
+								movie={movie}
 								quantity={
 									movies.filter((item) => item.title === movie.title).length
 								}
-								addItem={addItem}
-								removeItem={removeItem}
+								addItem={addMovie}
+								removeItem={removeMovie}
+								removeTitle={removeSpecificTitle}
 							/>
 						);
 					})}
 					<CartFooterWrapper>
-						<CartBtn to="/purchased">
+						<CartBtn to="/purchased" onClick={finishPurchase}>
 							<CartBtnText>FINALIZAR PEDIDO</CartBtnText>
 						</CartBtn>
 						<CartFooterTextBlock>
