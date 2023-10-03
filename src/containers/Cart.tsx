@@ -16,7 +16,6 @@ import { formatter } from 'utils';
 import EmptyCart from 'components/EmptyCart';
 import { useCartState } from 'utils/context';
 import { type Movie } from 'utils/types';
-// import { Movie } from 'utils/types';
 
 const Cart = () => {
 	const {
@@ -24,6 +23,7 @@ const Cart = () => {
 		dispatch,
 	} = useCartState();
 	const [filteredMovies, setFilteredMovies] = useState<Movie[]>();
+	const [cartTotal, setCartTotal] = useState(0);
 
 	const addMovie = (movie: Movie) => {
 		dispatch({ type: 'ADD_MOVIE', movie });
@@ -41,12 +41,20 @@ const Cart = () => {
 		dispatch({ type: 'RESET_STATE' });
 	};
 
+	const handleTotal = (movies: Movie[]) => {
+		let cartSubTotal = 0;
+		movies.map((movie) => {
+			return (cartSubTotal += movie.price);
+		});
+		setCartTotal(cartSubTotal);
+	};
+
 	useEffect(() => {
 		const filterArray = movies.filter(
 			(item, index) => movies.indexOf(item) === index
 		);
 		setFilteredMovies(filterArray);
-		console.log('ContextState: ', filterArray);
+		handleTotal(movies);
 	}, [movies]);
 
 	return (
@@ -80,7 +88,7 @@ const Cart = () => {
 						<CartFooterTextBlock>
 							<CartText>TOTAL</CartText>
 							<CartFooterTextTotal>
-								{formatter.format(9.99)}
+								{formatter.format(cartTotal)}
 							</CartFooterTextTotal>
 						</CartFooterTextBlock>
 					</CartFooterWrapper>
