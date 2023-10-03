@@ -4,36 +4,30 @@ import {
 	MovieInfoBlock,
 	MovieName,
 	MovieValue,
-	Wrapper,
+	CardContainer,
 } from 'components/Card.styles';
 import AddToCartBtn from 'components/AddToCartBtn';
+import type { Movie } from 'utils/types';
+import { currencyFormatter } from 'utils';
 
 interface CardProps {
 	wasAdded: boolean;
-	imgSrc?: string;
-	movieName?: string;
-	movieValue?: string;
+	movie: Movie;
 	quantity?: number;
 	onClick: () => void;
 }
 
-const Card = ({
-	imgSrc,
-	movieName,
-	movieValue,
-	wasAdded,
-	quantity,
-	onClick,
-}: CardProps) => {
+const Card = ({ movie, wasAdded, quantity, onClick }: CardProps) => {
+	const { title, price, image } = movie;
 	return (
-		<Wrapper>
+		<CardContainer>
 			<MovieInfoBlock>
-				<MovieImage src={imgSrc} />
-				<MovieName>{movieName}</MovieName>
-				<MovieValue>{movieValue}</MovieValue>
+				<MovieImage src={image} />
+				<MovieName>{title}</MovieName>
+				<MovieValue>{currencyFormatter.format(price)}</MovieValue>
 			</MovieInfoBlock>
 			<AddToCartBtn quantity={quantity} onClick={onClick} wasAdded={wasAdded} />
-		</Wrapper>
+		</CardContainer>
 	);
 };
 

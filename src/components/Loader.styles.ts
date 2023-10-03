@@ -5,7 +5,7 @@ const spin = keyframes`
   to { transform: rotate(360deg); }
 `;
 
-export const Wrapper = styled.section`
+export const LoaderContainer = styled.section`
 	position: absolute;
 	top: 50%;
 	left: 50%;

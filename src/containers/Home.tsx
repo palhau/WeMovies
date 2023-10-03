@@ -4,9 +4,8 @@ import Card from 'components/Card';
 import axios from 'axios';
 import type { Movie } from 'utils/types';
 import { CardsWrapper } from 'containers/Home.styles';
-import { formatter } from 'utils';
 import Loader from 'components/Loader';
-import { useCartState } from 'utils/context';
+import { useCartState, useMovieManagement } from 'utils/context';
 
 const Home = () => {
 	const [moviesApi, setMoviesApi] = useState<Movie[]>([]);
@@ -15,24 +14,28 @@ const Home = () => {
 	);
 	const {
 		state: { movies },
-		dispatch,
 	} = useCartState();
+	const { addMovie } = useMovieManagement();
 
-	const handleActiveButton = (activate: boolean, index: number) => {
+	const handleActiveButton = (index: number) => {
 		const updatedWasAddedStates = [...wasAddedStates];
-		updatedWasAddedStates[index] = activate;
+		updatedWasAddedStates[index] = true;
 		setWasAddedStates(updatedWasAddedStates);
 
 		setTimeout(() => {
 			const updatedWasAddedStates = [...wasAddedStates];
-			updatedWasAddedStates[index] = !activate;
+			updatedWasAddedStates[index] = false;
 			setWasAddedStates(updatedWasAddedStates);
 		}, 1000);
 	};
 
-	const addItem = (movie: Movie, index: number) => {
-		handleActiveButton(true, index);
-		dispatch({ type: 'ADD_MOVIE', movie });
+	const handleMovieAdd = (movie: Movie, index: number) => {
+		handleActiveButton(index);
+		addMovie(movie);
+	};
+
+	const handleQuantity = (comparator: string) => {
+		return movies.filter((item) => item.title === comparator).length;
 	};
 
 	const fetchMovieData = async () => {
@@ -61,14 +64,10 @@ const Home = () => {
 							<Card
 								key={movie.id}
 								wasAdded={wasAddedStates[index]}
-								movieName={movie.title}
-								movieValue={formatter.format(movie.price)}
-								imgSrc={movie.image}
-								quantity={
-									movies.filter((item) => item.title === movie.title).length
-								}
+								movie={movie}
+								quantity={handleQuantity(movie.title)}
 								onClick={() => {
-									addItem(movie, index);
+									handleMovieAdd(movie, index);
 								}}
 							/>
 						);

@@ -12,35 +12,23 @@ import {
 	CartBtnText,
 	CartFooterTextTotal,
 } from 'containers/Cart.styles';
-import { formatter } from 'utils';
+import { currencyFormatter } from 'utils';
 import EmptyCart from 'components/EmptyCart';
-import { useCartState } from 'utils/context';
+import { useCartState, useMovieManagement } from 'utils/context';
 import { type Movie } from 'utils/types';
 
 const Cart = () => {
 	const {
 		state: { movies },
-		dispatch,
 	} = useCartState();
 	const [filteredMovies, setFilteredMovies] = useState<Movie[]>();
 	const [cartTotal, setCartTotal] = useState(0);
+	const { addMovie, removeMovie, removeSpecificTitle, finishPurchase } =
+		useMovieManagement();
 
-	const addMovie = (movie: Movie) => {
-		dispatch({ type: 'ADD_MOVIE', movie });
+	const handleQuantity = (comparator: string) => {
+		return movies.filter((item) => item.title === comparator).length;
 	};
-
-	const removeMovie = (movieId: number) => {
-		dispatch({ type: 'REMOVE_MOVIE', movieId });
-	};
-
-	const removeSpecificTitle = (movieId: number) => {
-		dispatch({ type: 'REMOVE_ALL_MOVIE', movieId });
-	};
-
-	const finishPurchase = () => {
-		dispatch({ type: 'RESET_STATE' });
-	};
-
 	const handleTotal = (movies: Movie[]) => {
 		let cartSubTotal = 0;
 		movies.map((movie) => {
@@ -72,12 +60,16 @@ const Cart = () => {
 							<ItemCart
 								key={movie.id}
 								movie={movie}
-								quantity={
-									movies.filter((item) => item.title === movie.title).length
-								}
-								addItem={addMovie}
-								removeItem={removeMovie}
-								removeTitle={removeSpecificTitle}
+								quantity={handleQuantity(movie.title)}
+								addItem={() => {
+									addMovie(movie);
+								}}
+								removeItem={() => {
+									removeMovie(movie.id);
+								}}
+								removeTitle={() => {
+									removeSpecificTitle(movie.id);
+								}}
 							/>
 						);
 					})}
@@ -88,7 +80,7 @@ const Cart = () => {
 						<CartFooterTextBlock>
 							<CartText>TOTAL</CartText>
 							<CartFooterTextTotal>
-								{formatter.format(cartTotal)}
+								{currencyFormatter.format(cartTotal)}
 							</CartFooterTextTotal>
 						</CartFooterTextBlock>
 					</CartFooterWrapper>
