@@ -1,13 +1,13 @@
 import React from 'react';
-import GlobalStyles from './styles/global';
+import Header from 'components/Header';
+
+const itemsOnCart = 0;
 
 function App() {
 	return (
 		<>
-			<GlobalStyles />
-			<div className="App">
-				<h1>React App with Typescript.</h1>
-			</div>
+			<Header itemsCart={itemsOnCart} />
+			<div className="App"></div>
 		</>
 	);
 }
