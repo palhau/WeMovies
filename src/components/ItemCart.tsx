@@ -4,6 +4,8 @@ import TrashIcon from 'assets/icons/TrashIcon';
 import {
 	ItemCartContainer,
 	ItemCartImage,
+	ItemCartMinusIconWrapper,
+	ItemCartPlusIconWrapper,
 	ItemCartQtdBlock,
 	ItemCartQtdInput,
 	ItemCartTextBlock,
@@ -16,31 +18,53 @@ import { formatter } from 'utils';
 import type { Movie } from 'utils/types';
 
 interface ItemCartProps {
-	imgSrc: string;
-	title: string;
-	price: number;
+	movie: Movie;
 	quantity: number;
 	addItem: (movie: Movie) => void;
 	removeItem: (movieId: number) => void;
+	removeTitle: (movieId: number) => void;
 }
 
-const ItemCart = ({ title, imgSrc, price, quantity }: ItemCartProps) => {
+const ItemCart = ({
+	movie,
+	quantity,
+	addItem,
+	removeItem,
+	removeTitle,
+}: ItemCartProps) => {
+	const { id, title, price, image } = movie;
 	return (
 		<ItemCartContainer>
-			<ItemCartImage src={imgSrc} />
+			<ItemCartImage src={image} />
 			<ItemCartTextBlock>
 				<ItemCartTextTitle>{title}</ItemCartTextTitle>
 				<ItemCartTextPrice>{formatter.format(price)}</ItemCartTextPrice>
 			</ItemCartTextBlock>
 			<ItemCartQtdBlock>
-				<MinusIcon />
+				<ItemCartMinusIconWrapper
+					onClick={() => {
+						removeItem(id);
+					}}
+				>
+					<MinusIcon />
+				</ItemCartMinusIconWrapper>
 				<ItemCartQtdInput type="number" value={quantity} />
-				<PlusIcon />
+				<ItemCartPlusIconWrapper
+					onClick={() => {
+						addItem(movie);
+					}}
+				>
+					<PlusIcon />
+				</ItemCartPlusIconWrapper>
 			</ItemCartQtdBlock>
 			<ItemCartTextPrice type="subtotal">
 				{formatter.format(price * quantity)}
 			</ItemCartTextPrice>
-			<ItemCartTrashIconWrapper>
+			<ItemCartTrashIconWrapper
+				onClick={() => {
+					removeTitle(id);
+				}}
+			>
 				<TrashIcon />
 			</ItemCartTrashIconWrapper>
 		</ItemCartContainer>
