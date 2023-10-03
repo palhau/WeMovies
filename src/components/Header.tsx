@@ -5,7 +5,7 @@ import {
 	CartTitle,
 	CartWrapper,
 	Title,
-	Wrapper,
+	HeaderContainer,
 } from './Header.styles';
 import CartIcon from 'assets/icons/CartIcon';
 
@@ -15,7 +15,7 @@ interface HeaderProps {
 
 const Header = ({ itemsCart }: HeaderProps) => {
 	return (
-		<Wrapper>
+		<HeaderContainer>
 			<Title to="/">WeMovies</Title>
 			<CartWrapper to="/cart">
 				<CartTextBlock>
@@ -24,7 +24,7 @@ const Header = ({ itemsCart }: HeaderProps) => {
 				</CartTextBlock>
 				<CartIcon />
 			</CartWrapper>
-		</Wrapper>
+		</HeaderContainer>
 	);
 };
 

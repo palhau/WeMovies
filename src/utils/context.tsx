@@ -5,14 +5,10 @@ import React, {
 	type Dispatch,
 	type ReactNode,
 } from 'react';
+import type { Movie } from 'utils/types';
 
 interface CartState {
-	movies: Array<{
-		id: number;
-		title: string;
-		price: number;
-		image: string;
-	}>;
+	movies: Movie[];
 }
 
 type Action =
@@ -82,4 +78,31 @@ export const useCartState = () => {
 		throw new Error('useAppState must be used within an CartStateProvider');
 	}
 	return context;
+};
+
+export const useMovieManagement = () => {
+	const { dispatch } = useCartState();
+
+	const addMovie = (movie: Movie) => {
+		dispatch({ type: 'ADD_MOVIE', movie });
+	};
+
+	const removeMovie = (movieId: number) => {
+		dispatch({ type: 'REMOVE_MOVIE', movieId });
+	};
+
+	const removeSpecificTitle = (movieId: number) => {
+		dispatch({ type: 'REMOVE_ALL_MOVIE', movieId });
+	};
+
+	const finishPurchase = () => {
+		dispatch({ type: 'RESET_STATE' });
+	};
+
+	return {
+		addMovie,
+		removeMovie,
+		removeSpecificTitle,
+		finishPurchase,
+	};
 };

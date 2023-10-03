@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Wrapper = styled.section`
+export const HeaderContainer = styled.section`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
