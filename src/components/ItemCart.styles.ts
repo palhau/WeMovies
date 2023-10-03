@@ -98,6 +98,7 @@ export const ItemCartQtdInput = styled.input`
 	height: 26px;
 	border: 1px solid #d9d9d9;
 	border-radius: 4px;
+	text-align: center;
 `;
 
 export const ItemCartTrashIconWrapper = styled.div`

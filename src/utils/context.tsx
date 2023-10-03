@@ -17,7 +17,8 @@ interface CartState {
 
 type Action =
 	| { type: 'ADD_MOVIE'; movie: CartState['movies'][0] }
-	| { type: 'REMOVE_MOVIE'; movieId: number };
+	| { type: 'REMOVE_MOVIE'; movieId: number }
+	| { type: 'RESET_STATE' };
 
 const CartStateContext = createContext<
 	| {
@@ -35,6 +36,10 @@ const cartStateReducer = (state: CartState, action: Action): CartState => {
 			return {
 				...state,
 				movies: state.movies.filter((movie) => movie.id !== action.movieId),
+			};
+		case 'RESET_STATE':
+			return {
+				movies: [], // Reset the items array to an empty array
 			};
 		default:
 			return state;

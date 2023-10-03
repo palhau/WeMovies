@@ -4,14 +4,15 @@ import AddCartIcon from '../assets/icons/AddCartIcon';
 
 export interface AddToCartBtnProps {
 	wasAdded: boolean;
+	quantity?: number;
 	onClick: () => void;
 }
 
-const AddToCartBtn = ({ wasAdded, onClick }: AddToCartBtnProps) => {
+const AddToCartBtn = ({ wasAdded, quantity, onClick }: AddToCartBtnProps) => {
 	return (
 		<BtnWrapper onClick={onClick} wasAdded={wasAdded}>
 			<AddCartIcon />
-			<QtdItems>{!wasAdded ? 0 : 1}</QtdItems>
+			<QtdItems>{quantity}</QtdItems>
 			<BtnText>
 				{!wasAdded ? 'ADICIONAR AO CARRINHO' : 'ITEM ADICIONADO'}
 			</BtnText>

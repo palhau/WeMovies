@@ -12,21 +12,34 @@ import {
 	ItemCartTrashIconWrapper,
 } from 'components/ItemCart.styles';
 import React from 'react';
+import { formatter } from 'utils';
+import type { Movie } from 'utils/types';
 
-const ItemCart = () => {
+interface ItemCartProps {
+	imgSrc: string;
+	title: string;
+	price: number;
+	quantity: number;
+	addItem: (movie: Movie) => void;
+	removeItem: (movieId: number) => void;
+}
+
+const ItemCart = ({ title, imgSrc, price, quantity }: ItemCartProps) => {
 	return (
 		<ItemCartContainer>
-			<ItemCartImage />
+			<ItemCartImage src={imgSrc} />
 			<ItemCartTextBlock>
-				<ItemCartTextTitle>Homem Aranha</ItemCartTextTitle>
-				<ItemCartTextPrice>R$ 29,99</ItemCartTextPrice>
+				<ItemCartTextTitle>{title}</ItemCartTextTitle>
+				<ItemCartTextPrice>{formatter.format(price)}</ItemCartTextPrice>
 			</ItemCartTextBlock>
 			<ItemCartQtdBlock>
 				<MinusIcon />
-				<ItemCartQtdInput type="number" />
+				<ItemCartQtdInput type="number" value={quantity} />
 				<PlusIcon />
 			</ItemCartQtdBlock>
-			<ItemCartTextPrice type="subtotal">R$ 29,99</ItemCartTextPrice>
+			<ItemCartTextPrice type="subtotal">
+				{formatter.format(price * quantity)}
+			</ItemCartTextPrice>
 			<ItemCartTrashIconWrapper>
 				<TrashIcon />
 			</ItemCartTrashIconWrapper>
