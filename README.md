@@ -2,6 +2,9 @@
 
 WeMovies a React project using TypeScript and Styled Components
 
+![image](https://github.com/palhau/wefit-test-react/assets/40221360/db89d2f2-7ded-4ed6-9ab1-4bc8d011a521)
+
+
 ## Used Technologies
 
  [Create React App](https://github.com/facebook/create-react-app).
