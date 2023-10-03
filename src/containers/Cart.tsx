@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Header from 'components/Header';
 import ItemCart from 'components/ItemCart';
@@ -14,9 +14,27 @@ import {
 } from 'containers/Cart.styles';
 import { formatter } from 'utils';
 import EmptyCart from 'components/EmptyCart';
+import { useCartState } from 'utils/context';
+// import { Movie } from 'utils/types';
 
 const Cart = () => {
 	const hasItems = true;
+	const {
+		state: { movies },
+	} = useCartState();
+
+	// const addItem = (item: Movie) => {
+	// 	dispatch({ type: 'ADD_MOVIE', item });
+	// };
+
+	// const removeItem = (itemId: number) => {
+	// 	dispatch({ type: 'REMOVE_MOVIE', itemId });
+	// };
+
+	useEffect(() => {
+		console.log('ContextState: ', movies);
+	}, [movies]);
+
 	return (
 		<>
 			<Header />

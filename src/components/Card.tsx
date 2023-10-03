@@ -13,9 +13,16 @@ interface CardProps {
 	imgSrc?: string;
 	movieName?: string;
 	movieValue?: string;
+	onClick: () => void;
 }
 
-const Card = ({ imgSrc, movieName, movieValue, wasAdded }: CardProps) => {
+const Card = ({
+	imgSrc,
+	movieName,
+	movieValue,
+	wasAdded,
+	onClick,
+}: CardProps) => {
 	return (
 		<Wrapper>
 			<MovieInfoBlock>
@@ -23,7 +30,7 @@ const Card = ({ imgSrc, movieName, movieValue, wasAdded }: CardProps) => {
 				<MovieName>{movieName}</MovieName>
 				<MovieValue>{movieValue}</MovieValue>
 			</MovieInfoBlock>
-			<AddToCartBtn wasAdded={wasAdded} />
+			<AddToCartBtn onClick={onClick} wasAdded={wasAdded} />
 		</Wrapper>
 	);
 };

@@ -4,7 +4,7 @@ import AddCartIcon from '../assets/icons/AddCartIcon';
 
 export interface AddToCartBtnProps {
 	wasAdded: boolean;
-	onClick?: () => void;
+	onClick: () => void;
 }
 
 const AddToCartBtn = ({ wasAdded, onClick }: AddToCartBtnProps) => {
