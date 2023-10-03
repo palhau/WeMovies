@@ -14,17 +14,17 @@ body, h1, h2, h3, p, ul, ol, li {
 
 /* Apply a base font size and family */
 body {
-  font-family: 'Courier New', monospace;
+  font-family: Open Sans;
   font-size: 16px;
   line-height: 1.5;
 }
 
 /* Define global colors */
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --background-color: #f8f9fa;
-  --text-color: #333;
+  --primary-color: #009EDD;
+  --secondary-color: #039B00;
+  --background-color: #2F2E41;
+  --text-color: #FFFFFF;
 }
 
 /* Apply global styles to common HTML elements */
@@ -48,7 +48,6 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
   padding: 20px;
 }
