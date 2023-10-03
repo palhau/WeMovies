@@ -16,7 +16,7 @@ interface HeaderProps {
 const Header = ({ itemsCart }: HeaderProps) => {
 	return (
 		<Wrapper>
-			<Title>WeMovies</Title>
+			<Title to="/">WeMovies</Title>
 			<CartWrapper to="/cart">
 				<CartTextBlock>
 					<CartTitle>Meu Carrinho</CartTitle>
