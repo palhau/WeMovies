@@ -9,19 +9,37 @@ import Loader from 'components/Loader';
 import { useCartState } from 'utils/context';
 
 const Home = () => {
-	const [movies, setMovies] = useState<Movie[]>([]);
-	const { dispatch } = useCartState();
+	const [moviesApi, setMoviesApi] = useState<Movie[]>([]);
+	const [wasAddedStates, setWasAddedStates] = useState(
+		Array(moviesApi.length).fill(false)
+	);
+	const {
+		state: { movies },
+		dispatch,
+	} = useCartState();
 
-	const addItem = (movie: Movie) => {
+	const handleActiveButton = (activate: boolean, index: number) => {
+		const updatedWasAddedStates = [...wasAddedStates];
+		updatedWasAddedStates[index] = activate;
+		setWasAddedStates(updatedWasAddedStates);
+
+		setTimeout(() => {
+			const updatedWasAddedStates = [...wasAddedStates];
+			updatedWasAddedStates[index] = !activate;
+			setWasAddedStates(updatedWasAddedStates);
+		}, 1000);
+	};
+
+	const addItem = (movie: Movie, index: number) => {
+		handleActiveButton(true, index);
 		dispatch({ type: 'ADD_MOVIE', movie });
 	};
 
 	const fetchMovieData = async () => {
 		await axios('http://localhost:3001/products')
 			.then(async (response) => {
-				setMovies(response.data);
+				setMoviesApi(response.data);
 			})
-
 			.catch((error) => {
 				throw new Error(error);
 			});
@@ -29,26 +47,28 @@ const Home = () => {
 
 	useEffect(() => {
 		void fetchMovieData();
-		console.log(movies);
 	}, []);
 
 	return (
 		<>
 			<Header />
-			{movies.length === 0 ? (
+			{moviesApi.length === 0 ? (
 				<Loader />
 			) : (
 				<CardsWrapper>
-					{movies.map((movie, index) => {
+					{moviesApi.map((movie, index) => {
 						return (
 							<Card
-								key={index}
-								wasAdded={false}
+								key={movie.id}
+								wasAdded={wasAddedStates[index]}
 								movieName={movie.title}
 								movieValue={formatter.format(movie.price)}
 								imgSrc={movie.image}
+								quantity={
+									movies.filter((item) => item.title === movie.title).length
+								}
 								onClick={() => {
-									addItem(movie);
+									addItem(movie, index);
 								}}
 							/>
 						);

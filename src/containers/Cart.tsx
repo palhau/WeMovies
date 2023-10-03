@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from 'components/Header';
 import ItemCart from 'components/ItemCart';
@@ -15,24 +15,35 @@ import {
 import { formatter } from 'utils';
 import EmptyCart from 'components/EmptyCart';
 import { useCartState } from 'utils/context';
+import { type Movie } from 'utils/types';
 // import { Movie } from 'utils/types';
 
 const Cart = () => {
 	const hasItems = true;
 	const {
 		state: { movies },
+		dispatch,
 	} = useCartState();
+	const [filteredMovies, setFilteredMovies] = useState<Movie[]>();
 
-	// const addItem = (item: Movie) => {
-	// 	dispatch({ type: 'ADD_MOVIE', item });
-	// };
+	const addItem = (movie: Movie) => {
+		dispatch({ type: 'ADD_MOVIE', movie });
+	};
 
-	// const removeItem = (itemId: number) => {
-	// 	dispatch({ type: 'REMOVE_MOVIE', itemId });
+	const removeItem = (movieId: number) => {
+		dispatch({ type: 'REMOVE_MOVIE', movieId });
+	};
+
+	// const finishPurchase = (itemId: number) => {
+	// 	dispatch({ type: 'RESET_STATE' });
 	// };
 
 	useEffect(() => {
-		console.log('ContextState: ', movies);
+		const filterArray = movies.filter(
+			(item, index) => movies.indexOf(item) === index
+		);
+		setFilteredMovies(filterArray);
+		console.log('ContextState: ', filterArray);
 	}, [movies]);
 
 	return (
@@ -45,7 +56,21 @@ const Cart = () => {
 						<CartText>QTD</CartText>
 						<CartText>SUBTOTAL</CartText>
 					</CartHeaderWrapper>
-					<ItemCart />
+					{filteredMovies?.map((movie) => {
+						return (
+							<ItemCart
+								key={movie.id}
+								title={movie.title}
+								price={movie.price}
+								imgSrc={movie.image}
+								quantity={
+									movies.filter((item) => item.title === movie.title).length
+								}
+								addItem={addItem}
+								removeItem={removeItem}
+							/>
+						);
+					})}
 					<CartFooterWrapper>
 						<CartBtn to="/purchased">
 							<CartBtnText>FINALIZAR PEDIDO</CartBtnText>
